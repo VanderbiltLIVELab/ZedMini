@@ -1,3 +1,25 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:de28edac5c0621f2fc3dc069dda6046f2bdcbef59217004f77eeb64f983cfd80
-size 653
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: This object's rigidbody goes to sleep when created
+//
+//=============================================================================
+
+using UnityEngine;
+using System.Collections;
+
+namespace Valve.VR.InteractionSystem
+{
+	//-------------------------------------------------------------------------
+	public class SleepOnAwake : MonoBehaviour
+	{
+		//-------------------------------------------------
+		void Awake()
+		{
+			Rigidbody rigidbody = GetComponent<Rigidbody>();
+			if ( rigidbody )
+			{
+				rigidbody.Sleep();
+			}
+		}
+	}
+}

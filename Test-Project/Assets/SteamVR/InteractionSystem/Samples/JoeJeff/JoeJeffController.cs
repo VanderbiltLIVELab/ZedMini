@@ -1,3 +1,70 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3abedc15d034ebc49671122de1d20903324c7873e5de332eab22062b725fbbc8
-size 1981
+﻿using UnityEngine;
+using System.Collections;
+using Valve.VR;
+using Valve.VR.InteractionSystem;
+
+namespace Valve.VR.InteractionSystem.Sample
+{
+    public class JoeJeffController : MonoBehaviour
+    {
+        public Transform Joystick;
+        public float joyMove = 0.1f;
+
+        
+        [SteamVR_DefaultActionSet("platformer")]
+        public SteamVR_ActionSet actionSet;
+
+        [SteamVR_DefaultAction("Move", "platformer")]
+        public SteamVR_Action_Vector2 a_move;
+
+        [SteamVR_DefaultAction("Jump", "platformer")]
+        public SteamVR_Action_Boolean a_jump;
+
+
+        public JoeJeff character;
+
+        public Renderer jumpHighlight;
+
+
+        private Vector3 movement;
+        private bool jump;
+        private float glow;
+        private SteamVR_Input_Sources hand;
+        private Interactable interactable;
+
+        private void Start()
+        {
+            interactable = GetComponent<Interactable>();
+            interactable.activateActionSetOnAttach = actionSet;
+        }
+
+        private void Update()
+        {
+            if (interactable.attachedToHand)
+            {
+                hand = interactable.attachedToHand.handType;
+                Vector2 m = a_move.GetAxis(hand);
+                movement = new Vector3(m.x, 0, m.y);
+
+                jump = a_jump.GetStateDown(hand);
+                glow = Mathf.Lerp(glow, a_jump.GetState(hand) ? 1.5f : 1.0f, Time.deltaTime * 20);
+            }
+            else
+            {
+                movement = Vector2.zero;
+                jump = false;
+                glow = 0;
+            }
+
+            Joystick.localPosition = movement * joyMove;
+
+            float rot = transform.eulerAngles.y;
+
+            movement = Quaternion.AngleAxis(rot, Vector3.up) * movement;
+
+            jumpHighlight.sharedMaterial.SetColor("_EmissionColor", Color.white * glow);
+
+            character.Move(movement * 2, jump);
+        }
+    }
+}

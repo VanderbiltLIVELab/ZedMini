@@ -1,3 +1,39 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:eb58fa40921dfbd94e244921524a3814f7a7c409de599ebf3ee5462aa5297a1b
-size 993
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+[RequireComponent(typeof(Camera))]
+public class CopyToSurface : MonoBehaviour
+{
+    public RawImage canvasRawImage;
+
+    public Renderer worldRenderer;
+
+    private Camera cam;
+    private RenderTexture copyTexture;
+
+	// Use this for initialization
+	void Start ()
+    {
+        cam = GetComponent<Camera>();
+
+        copyTexture = new RenderTexture(cam.pixelWidth, cam.pixelHeight, 0);
+        copyTexture.Create();
+
+        if (canvasRawImage) canvasRawImage.texture = copyTexture;
+        if (worldRenderer) worldRenderer.material.mainTexture = copyTexture;
+    }
+	
+
+    private void OnRenderImage(RenderTexture source, RenderTexture destination)
+    {
+        Graphics.Blit(source, copyTexture);
+        Graphics.Blit(source, destination);
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (copyTexture) copyTexture.Release();
+    }
+}

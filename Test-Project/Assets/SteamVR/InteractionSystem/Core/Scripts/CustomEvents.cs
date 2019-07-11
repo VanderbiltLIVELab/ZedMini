@@ -1,3 +1,28 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:cb7bd91b2a454e6ae9d6048b759f5eb5c474286ed34feca45f8363b7b1809245
-size 744
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: Custom Unity Events that take in additional parameters
+//
+//=============================================================================
+
+using UnityEngine.Events;
+using System;
+
+namespace Valve.VR.InteractionSystem
+{
+	//-------------------------------------------------------------------------
+	public static class CustomEvents
+	{
+		//-------------------------------------------------
+		[System.Serializable]
+		public class UnityEventSingleFloat : UnityEvent<float>
+		{
+		}
+
+
+		//-------------------------------------------------
+		[System.Serializable]
+		public class UnityEventHand : UnityEvent<Hand>
+		{
+		}
+	}
+}

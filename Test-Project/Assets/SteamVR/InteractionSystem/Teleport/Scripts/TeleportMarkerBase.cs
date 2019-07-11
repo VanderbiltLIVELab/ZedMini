@@ -1,3 +1,57 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f658137f8800426f1d9437d5197ff8d15d75d4ce2a4fef51d919d0210b0ad0dd
-size 1527
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: Base class for all the objects that the player can teleport to
+//
+//=============================================================================
+
+using UnityEngine;
+
+namespace Valve.VR.InteractionSystem
+{
+	//-------------------------------------------------------------------------
+	public abstract class TeleportMarkerBase : MonoBehaviour
+	{
+		public bool locked = false;
+		public bool markerActive = true;
+
+		//-------------------------------------------------
+		public virtual bool showReticle
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+
+		//-------------------------------------------------
+		public void SetLocked( bool locked )
+		{
+			this.locked = locked;
+
+			UpdateVisuals();
+		}
+
+
+		//-------------------------------------------------
+		public virtual void TeleportPlayer( Vector3 pointedAtPosition )
+		{
+		}
+
+
+		//-------------------------------------------------
+		public abstract void UpdateVisuals();
+
+		//-------------------------------------------------
+		public abstract void Highlight( bool highlight );
+
+		//-------------------------------------------------
+		public abstract void SetAlpha( float tintAlpha, float alphaPercent );
+
+		//-------------------------------------------------
+		public abstract bool ShouldActivate( Vector3 playerPosition );
+
+		//-------------------------------------------------
+		public abstract bool ShouldMovePlayer();
+	}
+}

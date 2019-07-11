@@ -1,3 +1,51 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f287a55f4990a25b21625b1fedfb660ef62a3c457b1a297a68bcfac6c8cad568
-size 1110
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: Debug UI shown for the player
+//
+//=============================================================================
+
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+namespace Valve.VR.InteractionSystem
+{
+	//-------------------------------------------------------------------------
+	public class DebugUI : MonoBehaviour
+	{
+		private Player player;
+
+		//-------------------------------------------------
+		static private DebugUI _instance;
+		static public DebugUI instance
+		{
+			get
+			{
+				if ( _instance == null )
+				{
+					_instance = GameObject.FindObjectOfType<DebugUI>();
+				}
+				return _instance;
+			}
+		}
+
+
+		//-------------------------------------------------
+		void Start()
+		{
+			player = Player.instance;
+		}
+
+
+		//-------------------------------------------------
+		private void OnGUI()
+		{
+            if (Debug.isDebugBuild)
+            {
+#if !HIDE_DEBUG_UI
+                player.Draw2DDebug();
+#endif
+            }
+		}
+	}
+}

@@ -1,3 +1,44 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:22ec70850af0bf970d8d17e7a862567bfbc5dfbf51d87f0c7acd5d4a26ff89c8
-size 1565
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: Basic throwable object
+//
+//=============================================================================
+
+using UnityEngine;
+using UnityEngine.Events;
+using System.Collections;
+
+namespace Valve.VR.InteractionSystem
+{
+    public class ModalThrowable : Throwable
+    {
+        [Tooltip("The local point which acts as a positional and rotational offset to use while held with a grip type grab")]
+        public Transform gripOffset;
+
+        [Tooltip("The local point which acts as a positional and rotational offset to use while held with a pinch type grab")]
+        public Transform pinchOffset;
+        
+        protected override void HandHoverUpdate(Hand hand)
+        {
+            GrabTypes startingGrabType = hand.GetGrabStarting();
+
+            if (startingGrabType != GrabTypes.None)
+            {
+                if (startingGrabType == GrabTypes.Pinch)
+                {
+                    hand.AttachObject(gameObject, startingGrabType, attachmentFlags, pinchOffset);
+                }
+                else if (startingGrabType == GrabTypes.Grip)
+                {
+                    hand.AttachObject(gameObject, startingGrabType, attachmentFlags, gripOffset);
+                }
+                else
+                {
+                    hand.AttachObject(gameObject, startingGrabType, attachmentFlags, attachmentOffset);
+                }
+
+                hand.HideGrabHint();
+            }
+        }
+    }
+}

@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:82afe306fb2c7fa7cdba3642fb9623d568ac582e8d21ea641b989ae0012a55f5
-size 586
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: This object won't be destroyed when a new scene is loaded
+//
+//=============================================================================
+
+using UnityEngine;
+using System.Collections;
+
+namespace Valve.VR.InteractionSystem
+{
+	//-------------------------------------------------------------------------
+	public class DontDestroyOnLoad : MonoBehaviour
+	{
+		//-------------------------------------------------
+		void Awake()
+		{
+			DontDestroyOnLoad( this );
+		}
+	}
+}

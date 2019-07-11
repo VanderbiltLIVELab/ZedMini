@@ -1,3 +1,38 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:776e6fcbaf7f5a290b874770bc9b8dd8b572c0066b840ea6f467b9081778102f
-size 692
+﻿using UnityEngine;
+using System.Collections;
+using Valve.VR;
+
+public class AmbientSound : MonoBehaviour {
+	AudioSource s;
+
+	public float fadeintime;
+
+	float t;
+
+	public bool fadeblack = false;
+
+	float vol;
+
+	// Use this for initialization
+	void Start () {
+		AudioListener.volume = 1;
+		s = GetComponent<AudioSource> ();
+		s.time = Random.Range (0, s.clip.length);
+		if (fadeintime > 0)
+			t = 0;
+
+		vol = s.volume;
+
+		SteamVR_Fade.Start(Color.black, 0);
+		SteamVR_Fade.Start(Color.clear, 7);
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if (fadeintime > 0&&t<1) {
+			t += Time.deltaTime / fadeintime;
+			s.volume = t * vol;
+		}
+	
+	}
+}

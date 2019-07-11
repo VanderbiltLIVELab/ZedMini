@@ -1,3 +1,46 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3952c75aef822386c2bbb822931ca0b79eb75a88ee736cf682c2f214bce73f2e
-size 1615
+//======= Copyright (c) Stereolabs Corporation, All rights reserved. ===============
+
+using UnityEngine;
+
+/// <summary>
+/// In AR mode, displays a full-screen, non-timewarped view of the scene for the editor's Game window.
+/// Replaces Unity's default behavior of replicating the left eye view directly,
+/// which would otherwise have black borders and move around when the headset moves because of 
+/// latency compensation.
+/// ZEDManager creates a hidden camera with this script attached when in AR mode (see ZEDManager.CreateMirror()). 
+/// </summary>
+public class ZEDMirror : MonoBehaviour
+{
+    /// <summary>
+    /// The scene's ZEDManager component, for getting the texture overlay. 
+    /// </summary>
+    public ZEDManager manager;
+
+    /// <summary>
+    /// Reference to the ZEDRenderingPlane that renders the left eye, so we can get its target RenderTexture. 
+    /// </summary>
+	private ZEDRenderingPlane textureOverlayLeft;
+
+    void Start()
+    {
+        UnityEngine.XR.XRSettings.showDeviceView = false; //Turn off default behavior.
+    }
+
+    private void Update()
+    {
+        if (textureOverlayLeft == null && manager != null)
+        {
+			textureOverlayLeft = manager.GetLeftCameraTransform().GetComponent<ZEDRenderingPlane>();
+        }
+    }
+
+    private void OnRenderImage(RenderTexture source, RenderTexture destination)
+    {
+        if (textureOverlayLeft != null)
+        {
+            //Ignore source. Copy ZEDRenderingPlane's texture as the final image.
+            Graphics.Blit(textureOverlayLeft.target, destination);  
+        }
+    }
+
+}

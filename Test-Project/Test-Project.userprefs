@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6d9bd44a21c9416a647183b13b792b8582295b35949565fec211b6de2c29dc16
-size 1023
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ZED\Examples\GreenScreen\Scripts\GreenScreenManager.cs">
+    <Files>
+      <File FileName="Assets\Scripts\AvatarPlacement.cs" Line="1" Column="1" />
+      <File FileName="Assets\ZED\SDK\Helpers\Scripts\Display\ZEDRenderingPlane.cs" Line="1" Column="1" />
+      <File FileName="Assets\ZED\SDK\Helpers\Scripts\ZEDManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\ZED\SDK\Helpers\Scripts\Utilities\GUIMessage.cs" Line="1" Column="1" />
+      <File FileName="Assets\ZED\Examples\GreenScreen\Scripts\GreenScreenManager.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

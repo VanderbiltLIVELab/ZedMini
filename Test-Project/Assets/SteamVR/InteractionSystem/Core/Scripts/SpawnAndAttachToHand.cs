@@ -1,3 +1,37 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4dbffcf607606e46cd1ec35269b46429c5db6fc6b441940b331baa68b8c76640
-size 926
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: Creates an object and attaches it to the hand
+//
+//=============================================================================
+
+using UnityEngine;
+using System.Collections;
+
+namespace Valve.VR.InteractionSystem
+{
+	//-------------------------------------------------------------------------
+	public class SpawnAndAttachToHand : MonoBehaviour
+	{
+		public Hand hand;
+		public GameObject prefab;
+
+
+		//-------------------------------------------------
+		public void SpawnAndAttach( Hand passedInhand )
+		{
+			Hand handToUse = passedInhand;
+			if ( passedInhand == null )
+			{
+				handToUse = hand;
+			}
+
+			if ( handToUse == null )
+			{
+				return;
+			}
+
+			GameObject prefabObject = Instantiate( prefab ) as GameObject;
+			handToUse.AttachObject( prefabObject, GrabTypes.Scripted );
+		}
+	}
+}

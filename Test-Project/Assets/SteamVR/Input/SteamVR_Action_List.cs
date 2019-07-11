@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b11a50db7c88ed3c49478d98253ceffdc8eb1b6846138972be00c3a58b6f64cd
-size 557
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+
+using UnityEngine;
+using System.Collections;
+using System;
+using System.Runtime.InteropServices;
+
+namespace Valve.VR
+{
+    /// <summary>
+    /// A list of the actions in an action set. Restricted per Action Direction.
+    /// </summary>
+    public abstract class SteamVR_Action_List : ScriptableObject
+    {
+        public SteamVR_ActionSet actionSet;
+        public SteamVR_ActionDirections listDirection;
+        public SteamVR_Action[] actions;
+    }
+}

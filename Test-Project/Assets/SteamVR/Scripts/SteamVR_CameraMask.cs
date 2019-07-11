@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:569c7e04dca529ca812fb7283af6bdf1994c1ec6ea1af0884d25d52b2bcf5ee1
-size 555
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: Masks out pixels that cannot be seen through the connected hmd.
+//
+//=============================================================================
+
+using UnityEngine;
+
+namespace Valve.VR
+{
+    [ExecuteInEditMode]
+    public class SteamVR_CameraMask : MonoBehaviour
+    {
+        void Awake()
+        {
+            Debug.Log("SteamVR_CameraMask is deprecated in Unity 5.4 - REMOVING");
+            DestroyImmediate(this);
+        }
+    }
+}

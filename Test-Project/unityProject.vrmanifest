@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4bfc051ef7e0491a10db2f8060844f7153248df9eecc84e47450a8bc01489c57
-size 297
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.testproject.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "strings": {
+        "en_us": {
+          "name": "Test-Project [Testing]"
+        }
+      }
+    }
+  ]
+}

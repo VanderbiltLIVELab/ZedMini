@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:940d7bca201fc417214a344d463a3964a8258bb1066a9926c76e416a9ecee4ec
-size 115
+Color (Hexadecimal): 275639
+Range: 0.025
+Smoothness: 0.04
+Clip White: 1
+Clip Black: 0
+Erosion: 0
+Despill: 0.1

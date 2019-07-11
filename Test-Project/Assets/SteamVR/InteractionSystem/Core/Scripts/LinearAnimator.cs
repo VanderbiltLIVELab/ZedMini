@@ -1,3 +1,59 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:406d077c5b2bf17cfafddcc6c3a9a7284c2afe7be09232acdd1f745f227559c3
-size 1351
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: Animator whose speed is set based on a linear mapping
+//
+//=============================================================================
+
+using UnityEngine;
+using System.Collections;
+
+namespace Valve.VR.InteractionSystem
+{
+	//-------------------------------------------------------------------------
+	public class LinearAnimator : MonoBehaviour
+	{
+		public LinearMapping linearMapping;
+		public Animator animator;
+
+		private float currentLinearMapping = float.NaN;
+		private int framesUnchanged = 0;
+
+	
+		//-------------------------------------------------
+		void Awake()
+		{
+			if ( animator == null )
+			{
+				animator = GetComponent<Animator>();
+			}
+
+			animator.speed = 0.0f;
+
+			if ( linearMapping == null )
+			{
+				linearMapping = GetComponent<LinearMapping>();
+			}
+		}
+
+
+		//-------------------------------------------------
+		void Update()
+		{
+			if ( currentLinearMapping != linearMapping.value )
+			{
+				currentLinearMapping = linearMapping.value;
+				animator.enabled = true;
+				animator.Play( 0, 0, currentLinearMapping );
+				framesUnchanged = 0;
+			}
+			else
+			{
+				framesUnchanged++;
+				if ( framesUnchanged > 2 )
+				{
+					animator.enabled = false;
+				}
+			}
+		}
+	}
+}

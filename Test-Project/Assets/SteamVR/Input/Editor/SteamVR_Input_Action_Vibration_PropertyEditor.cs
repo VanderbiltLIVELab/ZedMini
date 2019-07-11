@@ -1,3 +1,22 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:25a8cf308c700dbe87aabad6f98875773f0c8752a40e99e0a5ed3d5d86c52b72
-size 512
+﻿using UnityEditor;
+using UnityEngine;
+
+using System.CodeDom;
+using Microsoft.CSharp;
+using System.IO;
+using System.CodeDom.Compiler;
+
+using System.Linq;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Linq.Expressions;
+using System;
+
+
+namespace Valve.VR
+{
+    [CustomPropertyDrawer(typeof(SteamVR_Action_Vibration))]
+    public class SteamVR_Input_Action_Vibration_PropertyEditor : SteamVR_Input_Action_GenericPropertyEditor<SteamVR_Action_Vibration>
+    {
+    }
+}

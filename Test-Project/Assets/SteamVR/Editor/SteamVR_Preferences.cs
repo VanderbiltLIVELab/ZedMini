@@ -1,3 +1,50 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1ed45d15b7966ebc77742d82c8f8af075b64aa04360f3fc587219a76a5227667
-size 1733
+//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: Preferences pane for how SteamVR plugin behaves.
+//
+//=============================================================================
+
+using UnityEngine;
+using UnityEditor;
+
+namespace Valve.VR
+{
+    public class SteamVR_Preferences
+    {
+        /// <summary>
+        /// Should SteamVR automatically enable VR when opening Unity or pressing play.
+        /// </summary>
+        public static bool AutoEnableVR
+        {
+            get
+            {
+                return EditorPrefs.GetBool("SteamVR_AutoEnableVR", true);
+            }
+            set
+            {
+                EditorPrefs.SetBool("SteamVR_AutoEnableVR", value);
+            }
+        }
+
+        [PreferenceItem("SteamVR")]
+        static void PreferencesGUI()
+        {
+            EditorGUILayout.BeginVertical();
+            EditorGUILayout.Space();
+
+            // Automatically Enable VR
+            {
+                string title = "Automatically Enable VR";
+                string tooltip = "Should SteamVR automatically enable VR on launch and play?";
+                AutoEnableVR = EditorGUILayout.Toggle(new GUIContent(title, tooltip), AutoEnableVR);
+                string helpMessage = "To enable VR manually:\n";
+                helpMessage += "- go to Edit -> Project Settings -> Player,\n";
+                helpMessage += "- tick 'Virtual Reality Supported',\n";
+                helpMessage += "- make sure OpenVR is in the 'Virtual Reality SDKs' list.";
+                EditorGUILayout.HelpBox(helpMessage, MessageType.Info);
+            }
+
+            EditorGUILayout.EndVertical();
+        }
+    }
+}

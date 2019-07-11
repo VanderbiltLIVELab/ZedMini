@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:db4f57c5d5bbb265d8a9ec6dbece1763e34ce237adec5db013b9fa1f50b7f65a
-size 959
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: A package of items that can interact with the hands and be returned
+//
+//=============================================================================
+
+using UnityEngine;
+using System.Collections;
+
+namespace Valve.VR.InteractionSystem
+{
+	//-------------------------------------------------------------------------
+	public class ItemPackage : MonoBehaviour
+	{
+		public enum ItemPackageType { Unrestricted, OneHanded, TwoHanded }
+
+		public new string name;
+		public ItemPackageType packageType = ItemPackageType.Unrestricted;
+		public GameObject itemPrefab; // object to be spawned on tracked controller
+		public GameObject otherHandItemPrefab; // object to be spawned in Other Hand
+		public GameObject previewPrefab; // used to preview inputObject
+		public GameObject fadedPreviewPrefab; // used to preview insubstantial inputObject
+	}
+}

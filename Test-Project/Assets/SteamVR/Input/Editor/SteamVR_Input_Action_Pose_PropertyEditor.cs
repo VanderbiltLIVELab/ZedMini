@@ -1,3 +1,22 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:45ba498994aec2c5399ec9ecaa5a26eee98bd04f62900a262e3dcc73da367f70
-size 497
+﻿using UnityEditor;
+using UnityEngine;
+
+using System.CodeDom;
+using Microsoft.CSharp;
+using System.IO;
+using System.CodeDom.Compiler;
+
+using System.Linq;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Linq.Expressions;
+using System;
+
+
+namespace Valve.VR
+{
+    [CustomPropertyDrawer(typeof(SteamVR_Action_Pose))]
+    public class SteamVR_Input_Action_Pose_PropertyEditor : SteamVR_Input_Action_GenericPropertyEditor<SteamVR_Action_Pose>
+    {
+    }
+}

@@ -1,3 +1,22 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:98191490c96bd14b2a009623868b7bcc6c7f082d566db58d1c52a67f259c9b0e
-size 535
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.ComponentModel;
+
+namespace Valve.VR
+{
+    public enum SteamVR_Input_Sources
+    {
+        [Description("/unrestricted")] //todo: check to see if this gets exported: k_ulInvalidInputHandle 
+        Any,
+
+        [Description("/user/hand/left")]
+        LeftHand,
+
+        [Description("/user/hand/right")]
+        RightHand,
+    }
+}

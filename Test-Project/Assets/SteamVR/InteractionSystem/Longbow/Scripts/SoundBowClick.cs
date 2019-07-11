@@ -1,3 +1,39 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8ae07bd1317fdcf16e12de4ba8d725cf4a72fe4dceb2c4284a7f9c4cb383332a
-size 1138
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//
+// Purpose: Sounds for the bow pulling back
+//
+//=============================================================================
+
+using UnityEngine;
+using System.Collections;
+
+namespace Valve.VR.InteractionSystem
+{
+	//-------------------------------------------------------------------------
+	public class SoundBowClick : MonoBehaviour
+	{
+		public AudioClip bowClick;
+		public AnimationCurve pitchTensionCurve;
+		public float minPitch;
+		public float maxPitch;
+
+		AudioSource thisAudioSource;
+
+		//-------------------------------------------------
+		void Awake()
+		{
+			thisAudioSource = GetComponent<AudioSource>();
+		}
+
+
+		//-------------------------------------------------
+		public void PlayBowTensionClicks( float normalizedTension )
+		{
+			// Tension is a float between 0 and 1. 1 being max tension and 0 being no tension
+			float y = pitchTensionCurve.Evaluate( normalizedTension );
+
+			thisAudioSource.pitch = ( ( maxPitch - minPitch ) * y ) + minPitch;
+			thisAudioSource.PlayOneShot( bowClick );
+		}
+	}
+}

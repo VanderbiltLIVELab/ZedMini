@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5600b64adfa586c043025f49b308ca826e142a1e2f28d19e73d63dd964705238
-size 307
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!134 &13400000
+PhysicMaterial:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SquishyBall
+  dynamicFriction: 0.6
+  staticFriction: 0.6
+  bounciness: 0.8
+  frictionCombine: 0
+  bounceCombine: 3

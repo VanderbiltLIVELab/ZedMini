@@ -1,3 +1,32 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ba42e9f633ad731ef22481cdc9afb22546af2ba3798037eca57af06dc8b62c4f
-size 553
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+// UNITY_SHADER_NO_UPGRADE
+Shader "Custom/SteamVR_Fade"
+{
+	SubShader
+	{
+		Pass
+		{
+			Blend SrcAlpha OneMinusSrcAlpha
+			ZTest Always
+			Cull Off
+			ZWrite Off
+
+			CGPROGRAM
+				#pragma vertex MainVS
+				#pragma fragment MainPS
+
+				float4 fadeColor;
+
+				float4 MainVS( float4 vertex : POSITION ) : SV_POSITION
+				{
+					return vertex.xyzw;
+				}
+
+				float4 MainPS() : SV_Target
+				{
+					return fadeColor.rgba;
+				}
+			ENDCG
+		}
+	}
+}

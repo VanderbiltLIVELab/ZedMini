@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:afb5d43328d84ad890d27070ca102738cba3c219922a5feae046ab8a204030a4
-size 452
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+
+using UnityEngine;
+using System.Collections;
+using System;
+using Valve.VR;
+using System.Runtime.InteropServices;
+
+namespace Valve.VR
+{
+    /// <summary>
+    /// There is currently only one output type action - vibration. But there may be more in the future.
+    /// </summary>
+    public abstract class SteamVR_Action_Out : SteamVR_Action
+    {
+    }
+}

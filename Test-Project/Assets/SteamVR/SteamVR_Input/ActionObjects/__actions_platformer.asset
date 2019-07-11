@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:eb2655888b88f8bf78d5db6d2297a590b2aa529df3fa979f4631c887c71695f9
-size 943
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f62b448e0dffb640a61db304931e3ed, type: 3}
+  m_Name: __actions_platformer
+  m_EditorClassIdentifier: 
+  allActions:
+  - {fileID: 11400000, guid: cac71809c0d945b458070c33945ea4cb, type: 2}
+  - {fileID: 11400000, guid: a4ffc88c3243c7a4b8a2399154ddac2c, type: 2}
+  nonVisualInActions:
+  - {fileID: 11400000, guid: cac71809c0d945b458070c33945ea4cb, type: 2}
+  - {fileID: 11400000, guid: a4ffc88c3243c7a4b8a2399154ddac2c, type: 2}
+  visualActions: []
+  poseActions: []
+  skeletonActions: []
+  outActionArray: []
+  fullPath: /actions/platformer
+  usage: single
+  inActions: {fileID: 11400000, guid: d2dc244e1b60996459432321d74c7ebc, type: 2}
