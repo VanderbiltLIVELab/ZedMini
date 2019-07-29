@@ -1,7 +1,0 @@
-Color (Hexadecimal): 275639
-Range: 0.025
-Smoothness: 0.04
-Clip White: 1
-Clip Black: 0
-Erosion: 0
-Despill: 0.1
